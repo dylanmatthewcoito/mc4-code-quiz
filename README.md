@@ -8,7 +8,7 @@ This simple coding quiz application is a fun way to test yourself with basic cod
 
 Follow the GitHub Pages link to get quizzed!
 
- [Code-Quiz]https://dylanmatthewcoito.github.io/mc4-code-quiz/
+https://dylanmatthewcoito.github.io/mc4-code-quiz/
 
 ## Usage
 
