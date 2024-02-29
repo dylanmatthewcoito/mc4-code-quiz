@@ -8,6 +8,8 @@ This simple coding quiz application is a fun way to test yourself with basic cod
 
 Follow the GitHub Pages link to get quizzed!
 
+ [Code-Quiz]https://dylanmatthewcoito.github.io/mc4-code-quiz/
+
 ## Usage
 
 Start the quiz by clicking the 'Start Quiz' button. For each question, select your best guess. The quiz is timed and each incorrect answer will take 10 seconds off the countdown (starting with 60 seconds). There are 5 questions total. Good luck!
