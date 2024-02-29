@@ -1,66 +1,127 @@
-const startButton = document.getElementById('start-button');
-const timer = document.getElementById('timer');
-const questionContainer = document.getElementById('question-container');
-const resultContainer = document.getElementById('result-container');
-const initialsInput = document.getElementById('initials-input');
-const saveButton = document.getElementById('save-button');
-
-
 const questions = [
-    { question: 'Question 1', answer: 'A' },
-    { question: 'Question 2', answer: 'B' },
-    { question: 'Question 3', answer: 'C' }
+    {
+        question: "Question 1: Commonly used datatypes DO NOT include:",
+        answers: [
+            "strings",
+            "booleans",
+            "alerts",
+            "numbers"
+        ],
+        correctAnswer: "alerts"
+    },
+    {
+        question: "Question 2: The condition in an if / else staement is enclosed with _____.",
+        answers: [
+            "quotes",
+            "curley brackets",
+            "parenthesis",
+            "square brackets"
+        ],
+        correctAnswer: "parenthesis"
+    },
+    {
+        question: "Question 3: Arrays in Javascript can be used to store _____.",
+        answers: [
+            "numbers and strings",
+            "other arrays",
+            "booleans",
+            "all of the above"
+        ],
+        correctAnswer: "all of the above"
+    },
+    {
+        question: "Question 4: String values must be enclosed within _____ when being assigned to variables.",
+        answers: [
+            "commas",
+            "curley brackets",
+            "quotes",
+            "parenthesis"
+        ],
+        correctAnswer: "quotes"
+    },
+    {
+        question: "Question 5: A very useful tool used during development and debugging for printing content to the debugger is:",
+        answers: [
+            "Javascript",
+            "terminal/bash",
+            "for loops",
+            "console.log"
+        ],
+        correctAnswer: "console.log"
+    }
 ];
+
+const startBtn = document.getElementById('start-btn');
+const questionContainer = document.getElementById('question-container');
+const timerElement = document.getElementById('timer');
+
 let currentQuestionIndex = 0;
-let score = 0;
 let timeLeft = 60;
-let timerInterval;
 
+startBtn.addEventListener('click', startQuiz);
 
-const startQuiz = () => {
-    timerInterval = setInterval(() => {
+function startQuiz() {
+    startBtn.style.display = 'none';
+    displayQuestion(currentQuestionIndex);
+
+    const timerInterval = setInterval(function () {
+        timerElement.textContent = `Time: ${timeLeft}`;
         timeLeft--;
-        timer.textContent = `Time: ${timeLeft}`;
-        if (timeLeft <= 0) {
+
+        if (timeLeft < 0 || currentQuestionIndex >= questions.length) {
+            clearInterval(timerInterval);
             endQuiz();
         }
     }, 1000);
-    showQuestion();
-};
+}
 
-const showQuestion = () => {
-    questionContainer.textContent = questions[currentQuestionIndex].question;
-};
+function displayQuestion(index) {
+    if (index >= questions.length) {
+        return;
+    }
 
-const checkAnswer = (answer) => {
-    if (answer === questions[currentQuestionIndex].answer) {
-        score += 10;
+    const question = questions[index];
+    const answersHtml = question.answers.map((answer, i) => `
+      <button onclick="checkAnswer(${index}, ${i})">${answer}</button>
+    `).join('');
+
+    questionContainer.innerHTML = `
+      <h2>${question.question}</h2>
+      <div>${answersHtml}</div>
+    `;
+}
+
+function checkAnswer(questionIndex, answerIndex) {
+    const selectedAnswer = questions[questionIndex].answers[answerIndex];
+    const correctAnswer = questions[questionIndex].correctAnswer;
+
+    if (selectedAnswer === correctAnswer) {
+        
+        currentQuestionIndex++;
+        displayQuestion(currentQuestionIndex);
     } else {
         timeLeft -= 10;
     }
-    currentQuestionIndex++;
-    if (currentQuestionIndex < questions.length) {
-        showQuestion();
-    } else {
-        endQuiz();
-    }
-};
+}
 
-const endQuiz = () => {
-    clearInterval(timerInterval);
-    questionContainer.textContent = 'Game Over';
-    resultContainer.textContent = `Your final score is ${score}`;
-    initialsInput.style.display = 'block';
-    saveButton.style.display = 'block';
-};
-
-startButton.addEventListener('click', startQuiz);
-
-saveButton.addEventListener('click', async () => {
-    const initials = initialsInput.value;
-    await saveInitialsAndScore(initials, score);
-});
-
-const saveInitialsAndScore = async (initials, score) => {
-    // Implement saving function
-};
+function endQuiz() {
+    questionContainer.innerHTML = '<h2>Quiz Over!</h2>';
+    
+    const initials = prompt('Enter your initials for saving score:');
+    const scoreData = {
+      initials: initials,
+      score: timeLeft
+    };
+    localStorage.setItem('quizScore', JSON.stringify(scoreData));
+    
+    // displayLeaderboard(); implement leaderbord  view
+    
+    questionContainer.innerHTML += `
+      <button onclick="restartQuiz()">Restart Quiz</button>
+    `;
+  }
+  
+  function restartQuiz() {
+    localStorage.removeItem('quizScore'); 
+    location.reload(); 
+  }
