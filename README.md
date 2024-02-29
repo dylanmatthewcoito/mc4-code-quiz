@@ -2,22 +2,17 @@
 
 ## Description
 
-Provide a short description explaining the what, why, and how of your project. Use the following questions as a guide:
-
-- What was your motivation?
-- Why did you build this project? (Note: the answer is not "Because it was a homework assignment.")
-- What problem does it solve?
-- What did you learn?
+This simple coding quiz application is a fun way to test yourself with basic coding knowledge. The quiz is comprised of 5 coding related questions and is multiple choice. This application was implemented with Javascript, HTML, and CSS. 
 
 ## Installation
 
-What are the steps required to install your project? Provide a step-by-step description of how to get the development environment running.
+Follow the GitHub Pages link to get quizzed!
 
 ## Usage
 
-Provide instructions and examples for use. Include screenshots as needed.
+Start the quiz by clicking the 'Start Quiz' button. For each question, select your best guess. The quiz is timed and each incorrect answer will take 10 seconds off the countdown (starting with 60 seconds). There are 5 questions total. Good luck!
 
 
-![code-quiz](https://github.com/dylanmatthewcoito/mc4-code-quiz/assets/71201051/f39e7f9c-98ad-44cd-bd35-591a995c3f41)
+![code-quiz](https://github.com/dylanmatthewcoito/mc4-code-quiz/assets/71201051/d63393bd-315d-4328-a27c-d8332a1b4dbe)
 
 
