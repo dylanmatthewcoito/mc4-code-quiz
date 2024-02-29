@@ -17,9 +17,7 @@ What are the steps required to install your project? Provide a step-by-step desc
 
 Provide instructions and examples for use. Include screenshots as needed.
 
-To add a screenshot, create an `assets/images` folder in your repository and upload your screenshot to it. Then, using the relative filepath, add it to your README using the following syntax:
 
-    ```md
-    ![alt text](assets/images/screenshot.png)
-    ```
+    ![code-quiz](https://github.com/dylanmatthewcoito/mc4-code-quiz/assets/71201051/f39e7f9c-98ad-44cd-bd35-591a995c3f41)
+
 
